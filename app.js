@@ -1,18 +1,19 @@
-const rect = {
-  perimeter: (x, y) => 2 * (x + y),
-  area: (x, y) => x * y,
-};
+import { rect } from "./rectangle.js";
 
 function solveRect(l, w) {
   console.log(`Solving for rectangle with dimensions of ${l}, ${w}.`);
-  if (l <= 0 || w <= 0) {
-    console.log(
-      `Rectangle dimensions must be greater than zero. Received ${l}x${w}`
-    );
-  } else {
-    console.log(`Area of rectangle: ${rect.area(l, w)}`);
-    console.log(`Perimeter of Rectangle: ${rect.perimeter(l, w)}`);
-  }
+  rect(l, w, (err, rectangle) => {
+    if (err) {
+      console.log("ERROR", err.message);
+    } else {
+      console.log(
+        `Area of rectangle with dimensions ${l}, ${w}: ${rectangle.area()}`
+      );
+      console.log(
+        `Perimeter of Rectangle with dimensions ${l}, ${w}: ${rectangle.perimeter()}`
+      );
+    }
+  });
 }
 
 solveRect(2, 4);
